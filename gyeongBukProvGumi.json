@@ -1,0 +1,248 @@
+{
+  "common": {
+    "wait": 10,
+    "login": {
+      "in": {
+        "btId": "id",
+        "bvPw": "member_name_tmp",
+        "bvId": "member_id_1",
+        "btPw": "id",
+        "url": "https://www.gbelib.kr/gm/intro/login/index.do?menu_idx=121",
+        "wait": 10,
+        "Callback": "find_elm_logout"
+      },
+      "out": {
+        "bvLogout": "//a[contains(text(), \"로그아웃\")]",
+        "wait": 10,
+        "btLogout": "xpath",
+        "autoLogout": true,
+        "Callback": "find_elm_login"
+      },
+      "user": {
+        "pw": "박형배",
+        "id": "14700313000993"
+      }
+    }
+  },
+  "prjName": "gyeongBukProvGumiLib",
+  "lendBook": {
+    "lists": [
+      {
+        "iter1StageCb": null,
+        "selector": [
+          "default",
+          "history"
+        ],
+        "name": "history",
+        "lastUpdate": "",
+        "logon": true,
+        "callback": {
+          "parse": "cb_history_of_books"
+        },
+        "path": "https://www.gbelib.kr/gm/intro/search/loan/history.do?menu_idx=116",
+        "period": "Thursday"
+      },
+      {
+        "iter1StageCb": null,
+        "selector": [
+          "default",
+          "progress"
+        ],
+        "name": "progress",
+        "lastUpdate": "",
+        "logon": true,
+        "callback": {
+          "parse": "cb_history_of_books"
+        },
+        "path": "https://www.gbelib.kr/gm/intro/search/loan/index.do?menu_idx=115",
+        "period": "Thursday"
+      }
+    ],
+    "common": {
+      "logout": true
+    },
+    "selector": {
+      "default": {
+        "wait": 10
+      },
+      "history": {
+        "bvDown": "//a[@class=\"btn btn2 excel-btn\"][contains(text(), \"엑셀 저장\")]"
+      },
+      "progress": {
+        "bvDown": "//div[@class=\"body\"]/div/a[contains(text(), \"엑셀 저장\")]"
+      }
+    }
+  },
+  "result": {
+    "path": "D:\\business\\utility\\selenuim\\project\\GyeongBukProvGumiLib\\data",
+    "format": "csv"
+  },
+  "exec": [
+    "notice"
+  ],
+  "log": {
+    "file": "GyeongBukProvGumiLib.log",
+    "level": 10,
+    "path": "D:\\business\\utility\\selenuim\\project\\GyeongBukProvGumiLib\\log",
+    "console": true
+  },
+  "findBook": {
+    "sField": "전체",
+    "sList": "",
+    "selector": {
+      "btSearch": "id",
+      "bvSrchOpt": "//ul/li[contains(text(), {0}",
+      "btSrchOpt": "xpath",
+      "bvSearch": "search_text"
+    },
+    "result": "",
+    "url": "http://www.gbelib.kr/gm/intro/search/index.do?menu_idx=8",
+    "wait": 10
+  },
+  "notice": {
+    "lists": [
+      {
+        "keyword": null,
+        "_text": "2",
+        "lastUpdate": {},
+        "logon": false,
+        "callback": {
+          "parse": "cb_parse_pages",
+          "iter": "cb_iter_crwal_pages"
+        },
+        "url": "http://www.gbelib.kr/gm/board/index.do?menu_idx=58&manage_idx=132&board_idx=0&rowCount=10&viewPage=1&search_type=title%2Bcontent",
+        "name": "libnote",
+        "result": "D:\\business\\utility\\selenuim\\project\\GyeongBukProvGumiLib\\data\\libNote.csv",
+        "tmpSave": true,
+        "selector": [
+          "default",
+          "page",
+          "notice"
+        ],
+        "period": "Monday",
+        "downEnable": false
+      },
+      {
+        "keyword": "희망도서목록",
+        "keyCallback": "cb_submit_key",
+        "selector": [
+          "default",
+          "page",
+          "detailPage",
+          "detailNotice"
+        ],
+        "lastUpdate": {},
+        "logon": false,
+        "callback": {
+          "parse": {
+            "parse": "cb_parse_lists",
+            "iter": "cb_iter_crwal_lists"
+          },
+          "iter": "cb_iter_crwal_pages"
+        },
+        "url": "http://www.gbelib.kr/gm/board/index.do?menu_idx=58&manage_idx=132",
+        "name": "reqbook",
+        "result": "D:\\business\\utility\\selenuim\\project\\GyeongBukProvGumiLib\\data\\희망도서목록.csv",
+        "tmpSave": true,
+        "period": "Tuesday",
+        "downEnable": true
+      },
+      {
+        "keyword": "가정의 달",
+        "keyCallback": "cb_submit_key",
+        "selector": [
+          "default",
+          "page",
+          "detailPage",
+          "detailNotice"
+        ],
+        "lastUpdate": {},
+        "logon": false,
+        "callback": {
+          "parse": {
+            "parse": "cb_parse_lists",
+            "iter": "cb_iter_crwal_lists"
+          },
+          "iter": "cb_iter_crwal_pages"
+        },
+        "url": "http://www.gbelib.kr/gm/board/index.do?menu_idx=58&manage_idx=132",
+        "name": "family",
+        "result": "D:\\business\\utility\\selenuim\\project\\GyeongBukProvGumiLib\\data\\가정의 달.csv",
+        "tmpSave": true,
+        "period": "Tuesday",
+        "downEnable": true
+      },
+      {
+        "keyword": "문화가 있는 날",
+        "keyCallback": "cb_submit_key",
+        "selector": [
+          "default",
+          "page",
+          "detailPage",
+          "detailNotice"
+        ],
+        "lastUpdate": {
+          "title": "4월 문화가 있는 날 도깨비 책방 안내",
+          "date": "2017.04.08 17:46",
+          "author": "나미정",
+          "download0": "도깨비책방_포스터.jpg",
+          "content": ""
+        },
+        "logon": false,
+        "callback": {
+          "parse": {
+            "parse": "cb_parse_lists",
+            "iter": "cb_iter_crwal_lists"
+          },
+          "iter": "cb_iter_crwal_pages"
+        },
+        "url": "http://www.gbelib.kr/gm/board/index.do?menu_idx=58&manage_idx=132",
+        "name": "culture",
+        "result": "D:\\business\\utility\\selenuim\\project\\GyeongBukProvGumiLib\\data\\문화가 있는 날.csv",
+        "tmpSave": true,
+        "period": "Always",
+        "downEnable": true
+      }
+    ],
+    "selector": {
+      "page": {
+        "pageStrNeighbor": "./proceding-sibling::a",
+        "btSearch": "id",
+        "pageNeighbor": "./following-sibling::a",
+        "startPoint": "//tr[not(@class=\"notice\")]",
+        "pageString": "//a[@class=\"paginate_button next\"][contains(text(), \"{0}\")]",
+        "pageCurrent": "//a[@class=\"paginate_button current\"]",
+        "bvSearch": "search_text_board",
+        "pageNumber": "//a[@class=\"paginate_button\"][contains(text(), \"{0}\")]"
+      },
+      "detailNotice": {
+        "author": "//dd[@class=\"info\"]/div[@class=\"panel-left\"]/span[1]",
+        "number": "//div[@class=\"wrapper-bbs\"]/div/div/dl/dd/div[@class=\"panel-right\"]/span",
+        "date": "//dd[@class=\"info\"]/div[@class=\"panel-left\"]/span[2]",
+        "title": "//div[@class=\"wrapper-bbs\"]/div/div/dl/dt",
+        "content": "//div[@class=\"bbs-view-body\"]"
+      },
+      "default": {
+        "maxEntry": 20,
+        "wait": 10
+      },
+      "detailPage": {
+        "listNumXpath": "//tr[not(@class=\"notice\")]",
+        "listLinkXpath": "./td[@class=\"important left td2\"]/a",
+        "downloadXpath": "//a[contains(@href, \"/board/boardFile/download\")]",
+        "listParent": "..",
+        "listNumXpath2": "//tr/td[@class=\"num first td1\"][contains(text(), \"{0}\")]",
+        "listNeighbor": "../../following-sibling::tr/td[@class=\"num first td1\"]",
+        "downloadTagName": "span",
+        "bvTitle": "//div[@class=\"wrapper-bbs\"]/div[@class=\"bbs-view\"]/div/dl/dt"
+      },
+      "notice": {
+        "author": "./td[@class=\"mmm1 td3\"]",
+        "number": "./td[@class=\"num first td1\"]",
+        "views": "./td[@class=\"num mmm1 td5\"",
+        "title": "./td[@class=\"important left td2\"]/a/span",
+        "date": "./td[@class=\"important num td4\"]"
+      }
+    }
+  }
+}
